@@ -1,0 +1,43 @@
+import { createGlobalStyle } from 'styled-components'
+
+export default createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`
+const theme = {
+  colors: {
+    background: '#18191a',
+    text: '#e3e3e3',
+    primary: '#ed2a4c'
+  }
+}
+
+export default theme
+/* eslint @typescript-eslint/no-empty-interface: "off" */
+import 'styled-components'
+
+import theme from './theme'
+
+export type Theme = typeof theme
+
+declare module 'styled-components' {
+  export interface DefaultTheme extends Theme {}
+}
+[...]
+import { ThemeProvider } from 'styled-components'
+
+import GlobalStyle from '../styles/global'
+import theme from '../styles/theme'
+
+return (
+    <ThemeProvider theme={theme}>
+      [...]
+
+      <GlobalStyle />
+    </ThemeProvider>
+)
+
+[...]
